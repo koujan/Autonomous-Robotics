@@ -1,0 +1,65 @@
+# defines TurtleBot robots
+include "turtlebot.inc"
+
+# defines 'map' object used for floorplans
+include "floorplan.inc"
+
+name                    "RRT Controller"
+
+# milliseconds per update step
+interval_sim            100
+
+quit_time                 0
+
+# the size of a pixel in Stage's (in meters)
+resolution                0.025
+
+show_clock                0
+show_clock_interval     100
+threads                 2
+
+# Load an environment bitmap
+floorplan
+( 
+  name "tutorial"
+  bitmap "test_environment.png"
+  size [850.000 750.000 1.000]
+  pose [0.000 0.000 0.000 0.000]
+)
+
+#Robot declaration
+turtlebot
+(
+  name "robot"
+  pose [0.000 0.000 0.000 0.000]
+)
+
+# Configure GUI window
+window
+(
+  size [ 400 300 ]
+  
+  # camera options
+  center [ 0.000 0.000 ]
+  rotate [ 0.000 0.000 ]
+  scale 1.000
+
+  # perspective camera options
+  pcam_loc [ 0.000 -4.000 2.000 ]
+  pcam_angle [ 70.000 0.000 ]
+
+  # GUI options
+  show_data 0
+  show_flags 1
+  show_blocks 1
+  show_clock 1
+  show_footprints 0
+  show_grid 1
+  show_trailarrows 0
+  show_trailrise 0
+  show_trailfast 0
+  show_occupancy 0
+  show_tree 0
+  pcam_on 0
+  screenshots 0
+)

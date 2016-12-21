@@ -1,0 +1,26 @@
+<launch>
+
+	<!-- Some general parameters -->
+	<param name="use_sim_time" value="true" />
+	<rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+
+	<!-- Start Stage simulator with a given environment -->
+	<node name="Stage" pkg="stage_ros" type="stageros" args="$(find tbug)/world/tbug_demo.world">
+		<param name="base_watchdog_timeout" value="0" />
+	</node>
+
+
+	<node name="robotframe" pkg="tbug" type="frames.py"  output="screen"/>
+
+
+	<node name="tangentbug" pkg="tbug" type="tanbug.py"  output="screen"/>
+
+
+
+	<node name="actionServer" pkg="tbug" type="driver.py"  output="screen"/>
+
+
+
+	<node name="goal" pkg="tbug" type="goal.py"  output="screen"/>
+
+</launch>

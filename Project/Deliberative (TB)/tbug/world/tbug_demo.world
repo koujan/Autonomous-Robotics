@@ -1,0 +1,45 @@
+include "p3at.inc"
+include "floorplan.inc"
+
+name                    "TangentBug Demo"
+interval_sim            100
+quit_time                 0
+resolution                0.025
+show_clock                0
+show_clock_interval     100
+threads                 3
+
+# Load an environment bitmap
+floorplan
+( 
+  name "tutorial"
+  bitmap "test_2.png"
+  size [34 30 1.0]
+  pose [0 0 0 0]
+)
+
+window
+(
+  size [ 850.0 750.0 ] # in pixels.
+  rotate [ 0.000 0.000 ] #rotation angles with x and y axes
+  scale 28.806 #pixels per meter
+  show_data 1   # shall we see sensor data?
+)
+
+# Robots
+pioneer3at
+(
+  name "robot"
+  pose [-3 2 0 90]
+  color "blue"	
+  size [0 0 0]
+)
+
+pioneer3at
+(
+  name "robot1"
+  pose [-3 1 0 90]
+  gui_nose 1
+  color "blue"  
+)
+ 

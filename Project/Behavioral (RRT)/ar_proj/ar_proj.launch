@@ -1,0 +1,28 @@
+<launch>
+	<!-- Read launch arguments -->
+  	<arg name="x" default="200"/>
+  	<arg name="y" default="200"/>
+  	<arg name="theta" default="1"/>
+  	<arg name="sym" default="False"/>
+  	<arg name="file" default="0"/>
+  	<arg name="map_file" default="$(find ar_proj)/world/test_environment.yaml"/>	
+
+	<!-- Some general parameters -->
+	<param name="use_sim_time" value="true" />
+	<rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+
+	<!-- Start Stage simulator with a given environment -->
+	<node name="Stage" pkg="stage_ros" type="stageros" args="$(find ar_proj)/world/ar_proj.world">
+		<param name="base_watchdog_timeout" value="0" />
+	</node>
+
+	<!-- Set the arguments to parameters -->
+  	<param name="x" value="$(arg x)"/>
+  	<param name="y" value="$(arg y)"/>
+  	<param name="theta" value="$(arg theta)"/>
+  	<param name="file" value="$(arg file)"/>
+
+  	<!-- RRT Driver node -->
+  	<node pkg="ar_proj" type="node.py" name="driver" output="screen"/>
+
+</launch>
